@@ -1,0 +1,127 @@
+# Arduino123
+Ardruino Tutorial
+
+How to send data from Arduino to Google Spreadsheet
+
+1. Create a new Google Spredsheet (Google Drive)
+2. Name the Spredsheet F_Data1
+3. Name the Sheet S_Data1
+4. Save the Google SpredSheet ID ( ID ~A~)
+    "https://docs.google.com/spreadsheets/d/Google SpredSheet ID ~A~/edit"
+5. Open <>Script editor from tools
+
+6.Name the project P_Data1
+7.Copy the web-app-id.gs code
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function doGet(e){
+  var time2 = ""
+  time2 = e.parameters.time2;
+  save_data(time2);
+  return ContentService.createTextOutput(time2);
+}
+function save_data(time2){
+  var spr = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/YOUR GOOGLE SPREDSHEET ID ~A~/edit");
+  var dataSheet = spr.getSheetByName("S_Data1");
+  var row = dataSheet.getLastRow() + 1;
+  dataSheet.getRange("A" + row).setValue(time2); 
+}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+8. Replace your Google Spredsheet ID (Code ID ~A~)
+9. Publish --> Deploy as web app....
+10.Select from "Who has acces to the app" --> Anyone,even anonymous
+11.Deploy --> Rewiew Permissions --> Advance --> Go to P_Data1 --> Allow
+12.Save the app URL "https://script.google.com/macros/s/WEB APP ID ~B~/exec?"
+13.Save the WEB APP ID ~B~
+14. Arduino code:
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+#include <ESP8266WiFi.h>
+#include <WiFiClientSecure.h>
+
+unsigned long time2;
+
+
+String readString;
+const char* ssid = "MyNET";
+const char* password = "MyPassword";
+const char* host = "script.google.com";
+const int httpsPort = 443;
+WiFiClientSecure client;
+const char* fingerprint = "46 B2 C3 44 9C 59 09 8B 01 B6 F8 BD 4C FB 00 74 91 2F EF F6";
+String APP_ID = "WEB APP ID ~B~";  
+
+void setup()
+{
+ WiFi.mode(WIFI_STA);
+ WiFi.begin(ssid, password);
+ while (WiFi.status() != WL_CONNECTED) 
+ delay(500); 
+}
+
+void loop()
+{
+ float time2 = micros();
+
+ sendData(time2);
+
+}
+
+void sendData(float time2)
+{
+ String s_time2= String(time2);
+ String url = "/macros/s/" + APP_ID + "/exec?time2=" + s_time2;
+ 
+ client.setInsecure();
+ client.connect(host, httpsPort);
+ client.verify(fingerprint, host);
+ client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+        "Host: " + host + "\r\n" +
+        "User-Agent: BuildFailureDetectorESP8266\r\n" +
+        "Connection: close\r\n\r\n");
+}
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+15. Replace ssid ,passowrd and WEB APP ID ~B~
+16. Save --> Verify --> Upload to Arduino
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

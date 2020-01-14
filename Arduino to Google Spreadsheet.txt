@@ -3,14 +3,14 @@ Ardruino Tutorial
 
 How to send data from Arduino to Google Spreadsheet
 
-1. Create a new Google Spredsheet (Google Drive)
-2. Name the Spredsheet F_Data1
+1. Create a new Google Spredsheet (Google Drive) # ad1.jpg 
+2. Name the Spredsheet F_Data1                   # ad2.jpg
 3. Name the Sheet S_Data1
 4. Save the Google SpredSheet ID ( ID ~A~)
     "https://docs.google.com/spreadsheets/d/Google SpredSheet ID ~A~/edit"
 5. Open <>Script editor from tools
 
-6.Name the project P_Data1
+6.Name the project P_Data1                       # ad3.jpg
 7.Copy the web-app-id.gs code
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -30,12 +30,12 @@ function save_data(time2){
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 8. Replace your Google Spredsheet ID (Code ID ~A~)
-9. Publish --> Deploy as web app....
-10.Select from "Who has acces to the app" --> Anyone,even anonymous
-11.Deploy --> Rewiew Permissions --> Advance --> Go to P_Data1 --> Allow
-12.Save the app URL "https://script.google.com/macros/s/WEB APP ID ~B~/exec?"
+9. Publish --> Deploy as web app....                                          # ad4.jpg
+10.Select from "Who has acces to the app" --> Anyone,even anonymous  
+11.Deploy --> Rewiew Permissions --> Advance --> Go to P_Data1 --> Allow      # ad5.jpg
+12.Save the app URL "https://script.google.com/macros/s/WEB APP ID ~B~/exec?" # ad6.jpg
 13.Save the WEB APP ID ~B~
-14. Arduino code:
+14. Arduino code:                                                             # ad8.jpg
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -87,7 +87,7 @@ void sendData(float time2)
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-15. Replace ssid ,passowrd and WEB APP ID ~B~
+15. Replace ssid ,passowrd and WEB APP ID ~B~                    # ad9.jpg
 16. Save --> Verify --> Upload to Arduino
 
 
